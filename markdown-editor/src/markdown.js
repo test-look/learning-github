@@ -16,7 +16,7 @@ const marked = new Marked(
 )
 
 const renderer = {
-  text(text) {
+  text({ text }) {
     text = text.replace(/\$(.+?)\$/g, (_, formula) => {
       try {
         return katex.renderToString(formula, { throwOnError: false })
