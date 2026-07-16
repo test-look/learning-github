@@ -62,6 +62,8 @@ $$
 const editor = document.getElementById('editor')
 const preview = document.getElementById('preview')
 const themeToggle = document.getElementById('theme-toggle')
+const hljsLight = document.getElementById('hljs-light')
+const hljsDark = document.getElementById('hljs-dark')
 
 function updatePreview() {
   preview.innerHTML = renderMarkdown(editor.value)
@@ -82,11 +84,17 @@ editor.addEventListener('keydown', (e) => {
   }
 })
 
+function setHLJSTheme(dark) {
+  hljsLight.disabled = dark
+  hljsDark.disabled = !dark
+}
+
 function initTheme() {
   const saved = localStorage.getItem('theme')
   if (saved) {
     document.documentElement.setAttribute('data-theme', saved)
     themeToggle.textContent = saved === 'dark' ? '☀️' : '🌙'
+    setHLJSTheme(saved === 'dark')
   }
 }
 
@@ -96,6 +104,7 @@ themeToggle.addEventListener('click', () => {
   document.documentElement.setAttribute('data-theme', next)
   localStorage.setItem('theme', next)
   themeToggle.textContent = next === 'dark' ? '☀️' : '🌙'
+  setHLJSTheme(next === 'dark')
 })
 
 initTheme()
