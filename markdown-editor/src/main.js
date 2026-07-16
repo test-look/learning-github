@@ -62,6 +62,7 @@ $$
 const editor = document.getElementById('editor')
 const preview = document.getElementById('preview')
 const themeToggle = document.getElementById('theme-toggle')
+const clearBtn = document.getElementById('clear-btn')
 const hljsLight = document.getElementById('hljs-light')
 const hljsDark = document.getElementById('hljs-dark')
 
@@ -73,6 +74,11 @@ editor.value = DEFAULT_MD
 updatePreview()
 
 editor.addEventListener('input', updatePreview)
+
+clearBtn.addEventListener('click', () => {
+  editor.value = ''
+  updatePreview()
+})
 
 editor.addEventListener('keydown', (e) => {
   if (e.key === 'Tab') {
