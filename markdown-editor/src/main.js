@@ -95,6 +95,11 @@ function setHLJSTheme(dark) {
   hljsDark.disabled = !dark
 }
 
+function initWordCount() {
+  const count = editor.value.length
+  console.log('字数:', count)
+}
+
 function initTheme() {
   const saved = localStorage.getItem('theme')
   if (saved) {
